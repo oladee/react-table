@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Table from './components/Table';
 import { useState } from 'react';
+import Search from './components/Search';
 
 const baseUrl = "https://jsonplaceholder.typicode.com/"
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
     }
     }])
     const [loading, setloading] = useState(false)
+    const [searchTerm, setSearchTerm] = useState(null)
   const getUsers = async () => {
     setloading(true)
     try {
@@ -47,8 +49,15 @@ const App = () => {
   },[])
   return (
     <div className='p-2 overflow-hidden'>
-      
-      <Table users={table} loading={loading}/>
+      <div>
+        <Search/>
+        <input
+        onChange={(e)=>{
+          setSearchTerm(e.target.value)
+        }}
+        />
+      </div>
+      <Table users={table} loading={loading} term ={searchTerm}/>
     </div>
   )
 }

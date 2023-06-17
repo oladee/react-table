@@ -14,24 +14,9 @@ const Table = ({users, loading}) => {
         </tr>
         </thead>
         <tbody>
-          {users.map((user,index) => {
-            
-            return(
-              loading ? (
-                <div>
-                  <h1>Please Wait while we get the information</h1>
-                </div>
-              ) : (
-                <tr className='bg-white border-b dark:bg-gray-900 dark:border-gray-700"'>
-              <td className='px-6 py-4'>{index+1}</td>
-              <td className='text-sm md:text-xl px-6 py-4'>{user.name}</td>
-              <td className='text-sm md:text-xl px-6 py-4'>{user.phone?.split(" ")[0].replaceAll(".", '-')}</td>
-              <td className='text-sm md:text-xl px-6 py-4'>{user.email}</td>
-              <td className='text-sm md:text-xl px-6 py-4'> {user.address.street}</td>
-            </tr>
-              )
-            )
-          })}
+          {
+            loading?(div):(<div>This</div>)
+          }
         </tbody>
 
     </table>
