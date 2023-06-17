@@ -47,6 +47,7 @@ const App = () => {
   },[])
   return (
     <div className='p-2 overflow-hidden'>
+      
       <Table users={table} loading={loading}/>
     </div>
   )
