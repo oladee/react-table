@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Table = ({users}) => {
+const Table = ({users, loading}) => {
   return (
     <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-      <table className="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
         <tr>
           <th scope="col" className='px-6 py-3'>S/N</th>
@@ -15,14 +15,21 @@ const Table = ({users}) => {
         </thead>
         <tbody>
           {users.map((user,index) => {
+            
             return(
-              <tr className='bg-white border-b dark:bg-gray-900 dark:border-gray-700"'>
+              loading ? (
+                <div>
+                  <h1>Please Wait while we get the information</h1>
+                </div>
+              ) : (
+                <tr className='bg-white border-b dark:bg-gray-900 dark:border-gray-700"'>
               <td className='px-6 py-4'>{index+1}</td>
-              <td className='text-sm md:text-xl '>{user.name}</td>
-              <td>{user.phone}</td>
-              <td>{user.email}</td>
-              
+              <td className='text-sm md:text-xl px-6 py-4'>{user.name}</td>
+              <td className='text-sm md:text-xl px-6 py-4'>{user.phone?.split(" ")[0].replaceAll(".", '-')}</td>
+              <td className='text-sm md:text-xl px-6 py-4'>{user.email}</td>
+              <td className='text-sm md:text-xl px-6 py-4'> {user.address.street}</td>
             </tr>
+              )
             )
           })}
         </tbody>

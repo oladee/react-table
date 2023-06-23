@@ -28,13 +28,17 @@ const App = () => {
     bs: null
     }
     }])
+    const [loading, setloading] = useState(false)
   const getUsers = async () => {
+    setloading(true)
     try {
       const response = await fetch(baseUrl+"users");
       const data = await response.json();
       setTable(data)
+      setloading(false)
     } catch (error) {
       console.log(error)
+      setloading(false)
     }
   }
   console.log(table)
@@ -43,7 +47,7 @@ const App = () => {
   },[])
   return (
     <div className='p-2 overflow-hidden'>
-      <Table users={table}/>
+      <Table users={table} loading={loading}/>
     </div>
   )
 }
